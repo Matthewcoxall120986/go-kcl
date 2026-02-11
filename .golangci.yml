@@ -1,9 +1,11 @@
+version: "2"
+
 run:
   timeout: 600s
 
-issues:
-  exclude-dirs:
-    - test
-    - internal
-  exclude-files:
-    - _mock.go
+linters:
+  exclusions:
+    paths:
+      - test
+      - internal
+      - _mock.go
