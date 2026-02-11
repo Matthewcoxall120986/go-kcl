@@ -23,8 +23,8 @@
 package zerolog
 
 import (
-	"github.com/rs/zerolog"
 	"github.com/ODudek/go-kcl/logger"
+	"github.com/rs/zerolog"
 	"gopkg.in/natefinch/lumberjack.v2"
 	"os"
 )

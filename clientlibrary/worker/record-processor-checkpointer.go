@@ -21,10 +21,10 @@
 package worker
 
 import (
-	"github.com/aws/aws-sdk-go-v2/aws"
 	chk "github.com/ODudek/go-kcl/clientlibrary/checkpoint"
 	kcl "github.com/ODudek/go-kcl/clientlibrary/interfaces"
 	par "github.com/ODudek/go-kcl/clientlibrary/partition"
+	"github.com/aws/aws-sdk-go-v2/aws"
 )
 
 type (
