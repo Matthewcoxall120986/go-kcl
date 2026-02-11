@@ -9,6 +9,7 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	prom "github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/collectors"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
 	cfg "github.com/ODudek/go-kcl/clientlibrary/config"
@@ -48,7 +49,7 @@ func main() {
 	// HTTP server.
 	// -----------------------------------------------------------------
 	registry := prom.NewRegistry()
-	registry.MustRegister(prom.NewGoCollector())
+	registry.MustRegister(collectors.NewGoCollector())
 
 	metricsService := prommetrics.NewMonitoringServiceWithOptions(
 		prommetrics.WithRegistry(registry),
